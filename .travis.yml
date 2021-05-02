@@ -1,0 +1,14 @@
+language: java
+
+sudo: required
+dist: trusty
+
+jdk:
+  - oraclejdk14
+
+before_install:
+  - curl -s api.sdkman.io | bash
+  - source /home/travis/.sdkman/bin/sdkman-init.sh
+  - sdk list gradle
+  - sdk install gradle 6.7
+  - sdk default gradle 6.7

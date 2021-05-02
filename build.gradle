@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'xyz.n7mn.dev'
+version '0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    compile 'mysql:mysql-connector-java:8.0.23'
+    compile 'com.google.code.gson:gson:2.8.6'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'xyz.n7mn.dev.BotMain'
+    }
+
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
