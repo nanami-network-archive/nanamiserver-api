@@ -172,45 +172,61 @@ public class Ban implements NanamiNetwork {
         return list;
     }
 
-    public boolean addList(UUID UserUUID, String Reason, String Area, String UserIPAddress, UUID ExecuteUser, Date EndDate){
+    public int addList(UUID UserUUID, String Reason, String Area, String UserIPAddress, UUID ExecuteUser, Date EndDate) throws SQLException{
         int newId = 1;
 
-        try {
-
-            Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
-            PreparedStatement statement1 = con.prepareStatement("" +
-                    "SELECT * FROM BanList ORDER BY BanID DESC"
-            );
-            ResultSet set = statement1.executeQuery();
-            if (set.next()){
-                newId = set.getInt(newId);
-                newId++;
-            }
-            set.close();
-            statement1.close();
-
-            PreparedStatement statement2 = con.prepareStatement("" +
-                    "INSERT INTO `BanList` (`BanID`, `UserUUID`, `Reason`, `Area`, `IP`, `EndDate`, `ExecuteDate`, `ExecuteUserUUID`, `Active`)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 1);"
-            );
-            statement2.setInt(1, newId);
-            statement2.setString(2, UserUUID.toString());
-            statement2.setString(3, Reason);
-            statement2.setString(4, Area);
-            statement2.setString(5, UserIPAddress);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            statement2.setString(6, sdf.format(EndDate));
-            statement2.setString(7, ExecuteUser.toString());
-
-            statement2.execute();
-
-            statement2.close();
-            con.close();
-        } catch (Exception e){
-            e.printStackTrace();
-            return false;
+        Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
+        PreparedStatement statement1 = con.prepareStatement("" +
+                "SELECT * FROM BanList ORDER BY BanID DESC"
+        );
+        ResultSet set = statement1.executeQuery();
+        if (set.next()){
+            newId = set.getInt(newId);
+            newId++;
         }
+        set.close();
+        statement1.close();
 
-        return true;
+        PreparedStatement statement2 = con.prepareStatement("" +
+                "INSERT INTO `BanList` (`BanID`, `UserUUID`, `Reason`, `Area`, `IP`, `EndDate`, `ExecuteDate`, `ExecuteUserUUID`, `Active`)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 1);"
+        );
+        statement2.setInt(1, newId);
+        statement2.setString(2, UserUUID.toString());
+        statement2.setString(3, Reason);
+        statement2.setString(4, Area);
+        statement2.setString(5, UserIPAddress);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        statement2.setString(6, sdf.format(EndDate));
+        statement2.setString(7, ExecuteUser.toString());
+
+        statement2.execute();
+
+        statement2.close();
+        con.close();
+
+        return newId;
     }
+
+    public void delList(int BanID) throws SQLException {
+        Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
+
+        PreparedStatement statement = con.prepareStatement("UPDATE BanList SET Active = 0 WHERE BanID = ?");
+        statement.setInt(1, BanID);
+        statement.execute();
+        statement.close();
+        con.close();
+    }
+
+    @Deprecated
+    public void delList(UUID UserUUID) throws SQLException {
+        Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
+
+        PreparedStatement statement = con.prepareStatement("UPDATE BanList SET Active = 0 WHERE UserUUID = ?");
+        statement.setString(1, UserUUID.toString());
+        statement.execute();
+        statement.close();
+        con.close();
+    }
+
 }
