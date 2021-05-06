@@ -8,6 +8,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.UUID;
 
@@ -50,6 +51,25 @@ public class Role implements NanamiNetwork {
 
     public List<RoleData> getList() throws SQLException, NullPointerException {
 
+        try {
+            boolean found = false;
+            Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+            while (drivers.hasMoreElements()){
+                Driver driver = drivers.nextElement();
+                if (driver.equals(new com.mysql.cj.jdbc.Driver())){
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         List<RoleData> list = new ArrayList<>();
         Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
 
@@ -72,6 +92,26 @@ public class Role implements NanamiNetwork {
     }
 
     public List<RoleData> getList(UUID UUID) throws SQLException, NullPointerException {
+
+        try {
+            boolean found = false;
+            Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+            while (drivers.hasMoreElements()){
+                Driver driver = drivers.nextElement();
+                if (driver.equals(new com.mysql.cj.jdbc.Driver())){
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         List<RoleData> list = new ArrayList<>();
         Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
 
@@ -96,6 +136,26 @@ public class Role implements NanamiNetwork {
 
     @Deprecated
     public List<RoleData> getList(int Rank) throws SQLException, NullPointerException {
+
+        try {
+            boolean found = false;
+            Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+            while (drivers.hasMoreElements()){
+                Driver driver = drivers.nextElement();
+                if (driver.equals(new com.mysql.cj.jdbc.Driver())){
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         List<RoleData> list = new ArrayList<>();
         Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
 

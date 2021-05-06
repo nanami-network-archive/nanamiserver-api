@@ -8,10 +8,8 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
 public class Ban implements NanamiNetwork {
 
@@ -53,6 +51,25 @@ public class Ban implements NanamiNetwork {
     @Deprecated
     public List<BanData> getList() throws SQLException, NullPointerException {
 
+        try {
+            boolean found = false;
+            Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+            while (drivers.hasMoreElements()){
+                Driver driver = drivers.nextElement();
+                if (driver.equals(new com.mysql.cj.jdbc.Driver())){
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         List<BanData> list = new ArrayList<>();
         Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
 
@@ -79,6 +96,25 @@ public class Ban implements NanamiNetwork {
     }
 
     public List<BanData> getList(boolean isActiveOnly) throws SQLException, NullPointerException {
+
+        try {
+            boolean found = false;
+            Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+            while (drivers.hasMoreElements()){
+                Driver driver = drivers.nextElement();
+                if (driver.equals(new com.mysql.cj.jdbc.Driver())){
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
 
         List<BanData> list = new ArrayList<>();
         Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
@@ -113,6 +149,25 @@ public class Ban implements NanamiNetwork {
     @Deprecated
     public List<BanData> getList(UUID UserUUID) throws SQLException, NullPointerException {
 
+        try {
+            boolean found = false;
+            Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+            while (drivers.hasMoreElements()){
+                Driver driver = drivers.nextElement();
+                if (driver.equals(new com.mysql.cj.jdbc.Driver())){
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         List<BanData> list = new ArrayList<>();
         Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
 
@@ -140,6 +195,25 @@ public class Ban implements NanamiNetwork {
     }
 
     public List<BanData> getList(UUID UserUUID, boolean isActiveOnly) throws SQLException, NullPointerException {
+
+        try {
+            boolean found = false;
+            Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+            while (drivers.hasMoreElements()){
+                Driver driver = drivers.nextElement();
+                if (driver.equals(new com.mysql.cj.jdbc.Driver())){
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
 
         List<BanData> list = new ArrayList<>();
         Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
@@ -173,6 +247,26 @@ public class Ban implements NanamiNetwork {
     }
 
     public int addList(UUID UserUUID, String Reason, String Area, String UserIPAddress, UUID ExecuteUser, Date EndDate) throws SQLException{
+
+        try {
+            boolean found = false;
+            Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+            while (drivers.hasMoreElements()){
+                Driver driver = drivers.nextElement();
+                if (driver.equals(new com.mysql.cj.jdbc.Driver())){
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         int newId = 1;
 
         Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
@@ -209,6 +303,26 @@ public class Ban implements NanamiNetwork {
     }
 
     public void delList(int BanID) throws SQLException {
+
+        try {
+            boolean found = false;
+            Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+            while (drivers.hasMoreElements()){
+                Driver driver = drivers.nextElement();
+                if (driver.equals(new com.mysql.cj.jdbc.Driver())){
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
 
         PreparedStatement statement = con.prepareStatement("UPDATE BanList SET Active = 0 WHERE BanID = ?");
@@ -220,6 +334,26 @@ public class Ban implements NanamiNetwork {
 
     @Deprecated
     public void delList(UUID UserUUID) throws SQLException {
+
+        try {
+            boolean found = false;
+            Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+            while (drivers.hasMoreElements()){
+                Driver driver = drivers.nextElement();
+                if (driver.equals(new com.mysql.cj.jdbc.Driver())){
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         Connection con = DriverManager.getConnection("jdbc:mysql://" + sql.getMySQLServer() + ":" + sql.getMySQLPort() + "/" + sql.getMySQLDatabase() + sql.getMySQLOption(), sql.getUsername(), sql.getPassword());
 
         PreparedStatement statement = con.prepareStatement("UPDATE BanList SET Active = 0 WHERE UserUUID = ?");
