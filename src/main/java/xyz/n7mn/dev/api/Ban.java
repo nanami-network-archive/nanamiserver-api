@@ -283,7 +283,7 @@ public class Ban implements NanamiNetwork {
 
         PreparedStatement statement2 = con.prepareStatement("" +
                 "INSERT INTO `BanList` (`BanID`, `UserUUID`, `Reason`, `Area`, `IP`, `EndDate`, `ExecuteDate`, `ExecuteUserUUID`, `Active`)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 1);"
+                " VALUES (?, ?, ?, ?, ?, ?, NOW(), ?, 1);"
         );
         statement2.setInt(1, newId);
         statement2.setString(2, UserUUID.toString());
