@@ -78,7 +78,7 @@ public class Ban implements NanamiNetwork {
         while (set.next()){
             list.add(new BanData(
                     set.getInt("BanID"),
-                    UUID.fromString(set.getString(" UserUUID")),
+                    UUID.fromString(set.getString("UserUUID")),
                     set.getString("Reason"),
                     set.getString("Area"),
                     set.getString("IP"),
