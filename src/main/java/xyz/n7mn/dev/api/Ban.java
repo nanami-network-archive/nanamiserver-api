@@ -82,8 +82,8 @@ public class Ban implements NanamiNetwork {
                     set.getString("Reason"),
                     set.getString("Area"),
                     set.getString("IP"),
-                    set.getDate("EndDate"),
-                    set.getDate("ExecuteDate"),
+                    set.getTimestamp("EndDate"),
+                    set.getTimestamp("ExecuteDate"),
                     UUID.fromString(set.getString("ExecuteUserUUID")),
                     set.getBoolean("Active")
             ));
@@ -133,8 +133,8 @@ public class Ban implements NanamiNetwork {
                     set.getString("Reason"),
                     set.getString("Area"),
                     set.getString("IP"),
-                    set.getDate("EndDate"),
-                    set.getDate("ExecuteDate"),
+                    set.getTimestamp("EndDate"),
+                    set.getTimestamp("ExecuteDate"),
                     UUID.fromString(set.getString("ExecuteUserUUID")),
                     set.getBoolean("Active")
             ));
@@ -181,8 +181,8 @@ public class Ban implements NanamiNetwork {
                     set.getString("Reason"),
                     set.getString("Area"),
                     set.getString("IP"),
-                    set.getDate("EndDate"),
-                    set.getDate("ExecuteDate"),
+                    set.getTimestamp("EndDate"),
+                    set.getTimestamp("ExecuteDate"),
                     UUID.fromString(set.getString("ExecuteUserUUID")),
                     set.getBoolean("Active")
             ));
@@ -233,8 +233,8 @@ public class Ban implements NanamiNetwork {
                     set.getString("Reason"),
                     set.getString("Area"),
                     set.getString("IP"),
-                    set.getDate("EndDate"),
-                    set.getDate("ExecuteDate"),
+                    set.getTimestamp("EndDate"),
+                    set.getTimestamp("ExecuteDate"),
                     UUID.fromString(set.getString("ExecuteUserUUID")),
                     set.getBoolean("Active")
             ));
