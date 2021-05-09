@@ -2,7 +2,7 @@
 ## ななみ鯖API for Java
 とりあえず版
 
-[![Build Status](https://travis-ci.org/nanami-network/nanamiserver-api.svg?branch=master)](https://travis-ci.org/nanami-network/nanamiserver-api)
+[![Build Status](https://travis-ci.com/nanami-network/nanamiserver-api.svg?branch=master)](https://travis-ci.com/nanami-network/nanamiserver-api)
 [![](https://jitpack.io/v/nanami-network/nanamiserver-api.svg)](https://jitpack.io/#nanami-network/nanamiserver-api)
 
 
